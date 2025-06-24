@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../components/ui/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import ImageComponent from "./ImageComponent";
 import { useSearchParams } from "react-router-dom";
@@ -9,11 +9,12 @@ export default function VanCard() {
   const navigate = useNavigate();
   const [vansData, setVansData] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+
   const typeFilter = searchParams.get("type");
 
-  const handleClick = (id) => {
-    navigate(`/vans/${id}`);
-  };
+  console.log(typeFilter);
+
   useEffect(() => {
     const fetchedData = Axios.get("/api/vans").then((res) => {
       setVansData(res.data.vans);
@@ -36,10 +37,15 @@ export default function VanCard() {
       })
       .map((van, index) => {
         return (
-          <div
+          <Link
+            to={`/vans/${van.id}`}
+            state={{
+              searchFilter: `${
+                typeFilter != null ? "?" + searchParams.toString() : ""
+              }`,
+            }}
             key={index}
             className="space-y-3 w-64 cursor-pointer"
-            onClick={() => handleClick(van.id)}
           >
             <ImageComponent
               src={van.imageUrl}
@@ -55,7 +61,7 @@ export default function VanCard() {
             </div>
 
             <Button text={van.type} bgColor="bg-orange-500" />
-          </div>
+          </Link>
         );
       })
   );

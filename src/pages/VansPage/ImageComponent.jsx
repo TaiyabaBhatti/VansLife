@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function ImageComponent({ src, alt, properties }) {
   const [isLoaded, setLoaded] = useState(false);
 
-  console.log(isLoaded);
+  // console.log(isLoaded);
   const loadState = () => {
     setLoaded(true);
   };
