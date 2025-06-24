@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-medium-gray: #4d4d4d;
+  --color-shook-orange: #ff8c38;
+  --color-dull-white: #aaaaaa;
+  --color-dark-salete: #252525;
+  --color-dull-orange: #ffcc8d;
+  --color-salete: #161616;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+#nav-tabs .active {
+  text-decoration-line: underline;
+  -moz-text-decoration-line: underline;
+}
+
+/* page x padding 24px */
+
+.loading {
+  animation-name: loading-circle;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+
+  background-image: linear-gradient(to right, #99a1af, #101828);
+}
+
+@keyframes loading-circle {
+  0% {
+    background-image: linear-gradient(to right, #99a1af, #101828);
+  }
+  35% {
+    background-image: linear-gradient(to bottom, #99a1af, #101828);
+  }
+  75% {
+    background-image: linear-gradient(to left, #99a1af, #101828);
+  }
+  100% {
+    background-image: linear-gradient(to top, #99a1af, #101828);
+  }
+}
