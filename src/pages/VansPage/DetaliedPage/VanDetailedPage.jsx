@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../../../components/ui/Wrapper";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import Button from "../../../components/ui/Button";
 // import vanImage from "./../../assets/images/van.png";
 import Axios from "axios";
@@ -9,20 +9,33 @@ import ImageComponent from "../ImageComponent";
 
 export default function VanDetailedPage() {
   const [vanData, setVanData] = useState(null);
+  const location = useLocation();
   const params = useParams();
+
+  console.log(location);
 
   useEffect(() => {
     const fetchedData = Axios.get(`/api/vans/${params.id}`).then((res) => {
-      console.log(params);
       setVanData(res.data.van);
     });
   }, []);
 
+  const getSearchFilter = () => {
+    return location.state == null ? "" : location.state.searchFilter;
+  };
+
   return (
     <Wrapper className="mb-10 mt-14 min-h-screen">
-      <Link to="/vans" className="underline text-black font-base ">
+      <Link
+        to={`../vans/${getSearchFilter()}`}
+        className="underline text-black font-base "
+      >
         Back to all vans
       </Link>
+
+      {/* <Link to=".." className="underline text-black font-base ">
+        Back to all vans
+      </Link> */}
 
       {vanData ? (
         <div className=" mt-10 space-y-16">
