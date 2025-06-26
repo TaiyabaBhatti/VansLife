@@ -4,6 +4,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import ImageComponent from "./ImageComponent";
 import { useSearchParams } from "react-router-dom";
+import getVans from "../../ApiFunc";
+
+//  function loaderLoad(){
+
+// }
 
 export default function VanCard() {
   const navigate = useNavigate();
@@ -13,12 +18,12 @@ export default function VanCard() {
 
   const typeFilter = searchParams.get("type");
 
-  console.log(typeFilter);
-
   useEffect(() => {
-    const fetchedData = Axios.get("/api/vans").then((res) => {
-      setVansData(res.data.vans);
-    });
+    async function VanData() {
+      const data = await getVans();
+      setVansData(data);
+    }
+    VanData();
   }, []);
 
   return (
@@ -43,6 +48,7 @@ export default function VanCard() {
               searchFilter: `${
                 typeFilter != null ? "?" + searchParams.toString() : ""
               }`,
+              filter: typeFilter || null,
             }}
             key={index}
             className="space-y-3 w-64 cursor-pointer"

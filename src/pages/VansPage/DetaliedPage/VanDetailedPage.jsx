@@ -24,13 +24,25 @@ export default function VanDetailedPage() {
     return location.state == null ? "" : location.state.searchFilter;
   };
 
+  const getBackText = () => {
+    if (location.state !== null) {
+      if (location.state.filter !== null) {
+        return `${location.state.filter}`;
+      } else {
+        return "All";
+      }
+    } else {
+      return "All";
+    }
+  };
+
   return (
     <Wrapper className="mb-10 mt-14 min-h-screen">
       <Link
         to={`../vans/${getSearchFilter()}`}
         className="underline text-black font-base "
       >
-        Back to all vans
+        Back to {getBackText()} Vans
       </Link>
 
       {/* <Link to=".." className="underline text-black font-base ">
