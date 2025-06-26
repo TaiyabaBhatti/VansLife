@@ -1,4 +1,4 @@
-import { createServer, Model } from "miragejs";
+import { createServer, Model, Response } from "miragejs";
 
 
 
@@ -21,9 +21,14 @@ export function makeServer({ environment = "development" } = {}) {
 
     routes() {
       this.namespace = "api";
+      this.logging = false
 
-      this.get("/vans", (schema) => {
-        return schema.vans.all();
+      // this.get("/vans", (schema) => {
+      //   return schema.vans.all();
+      // });
+
+      this.get("/vans", (schema, request) => {
+        return new Response(400, {}, { error: "Error fetching data" });
       });
 
       this.get("/vans/:id", (schema, request) => {
