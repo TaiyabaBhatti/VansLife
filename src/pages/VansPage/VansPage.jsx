@@ -1,10 +1,17 @@
 import React from "react";
 import Wrapper from "../../components/ui/Wrapper";
 import VanCollection from "./VanCollection";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import TabFilter from "./TabFilter";
+import { getVans } from "../../ApiFunc";
+
+export function loaderLoad() {
+  return getVans();
+}
 
 export default function Vans() {
+  const data = useLoaderData();
+
   return (
     <>
       <Wrapper className="mb-10 space-y-10 mt-14">
@@ -24,7 +31,7 @@ export default function Vans() {
 
         {/* vans list */}
         <div className="flex flex-row flex-wrap gap-x-6 gap-y-12 justify-start">
-          <VanCollection />
+          <VanCollection vansData={data} />
         </div>
       </Wrapper>
     </>

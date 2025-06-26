@@ -4,27 +4,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import ImageComponent from "./ImageComponent";
 import { useSearchParams } from "react-router-dom";
-import getVans from "../../ApiFunc";
+// import getVans from "../../ApiFunc";
 
-//  function loaderLoad(){
-
-// }
-
-export default function VanCard() {
+export default function VanCollection({ vansData }) {
   const navigate = useNavigate();
-  const [vansData, setVansData] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
   const typeFilter = searchParams.get("type");
-
-  useEffect(() => {
-    async function VanData() {
-      const data = await getVans();
-      setVansData(data);
-    }
-    VanData();
-  }, []);
 
   return (
     vansData &&
