@@ -15,6 +15,7 @@ import VanDetails from "./pages/VansPage/DetaliedPage/VanDetails";
 import Vans, { loaderLoad as vansLoader } from "./pages/VansPage/VansPage";
 import BlankPage from "./pages/BlankPage";
 import Error from "./components/ui/Error";
+import Account from "./pages/Account";
 
 makeServer();
 // import RoutePages from "./routing/RoutePages";
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="home" element={<Home />} />
       <Route path="about" element={<About />} />
+      <Route path="account" element={<Account />} />
       <Route
         path="vans"
         element={<Vans />}

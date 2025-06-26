@@ -18,7 +18,7 @@ export default function TabFilter({ type, value, text }) {
   return (
     <button
       onClick={() => genNewQueryParamString(type, value)}
-      className="bg-dull-orange text-gray-600 rounded-md  cursor-pointer font-bold text-base text-center py-1.5 px-5 "
+      className="bg-dull-orange text-gray-600 rounded-md  cursor-pointer font-bold text-base text-center py-1.5 px-3 "
     >
       {text}
     </button>

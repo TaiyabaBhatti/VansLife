@@ -10,7 +10,7 @@ export default function ImageComponent({ src, alt, properties }) {
 
   return (
     <>
-      {/* <div
+      <div
         className={`${
           isLoaded ? "!hidden" : "flex"
         } size-40  items-center justify-center`}
@@ -18,14 +18,14 @@ export default function ImageComponent({ src, alt, properties }) {
         <div className="loading size-10  rounded-full p-1">
           <div className=" rounded-full w-full h-full bg-white"></div>
         </div>
-      </div> */}
+      </div>
 
-      {/* <img
+      <img
         src={src}
         alt={alt}
         onLoad={loadState}
         className={`  ${properties} `}
-      /> */}
+      />
     </>
   );
 }

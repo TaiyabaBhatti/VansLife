@@ -25,6 +25,9 @@ export default function Header() {
         >
           Vans
         </NavLink>
+        <NavLink to={"account"} className="">
+          Account
+        </NavLink>
       </nav>
     </header>
   );
