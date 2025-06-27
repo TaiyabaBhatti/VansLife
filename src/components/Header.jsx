@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="h-24 flex flex-row justify-between py-9 px-6">
+    <header className="h-24 flex flex-row justify-between py-9 px-6 items-center">
       <div>
         <Link to={"home"} className="font-black text-2xl">
           #VANLIFE
@@ -25,9 +25,15 @@ export default function Header() {
         >
           Vans
         </NavLink>
-        <NavLink to={"account"} className="">
-          Account
+        <NavLink
+          to={"host"}
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Host
         </NavLink>
+        <Link to={"account"} className="">
+          Account
+        </Link>
       </nav>
     </header>
   );
