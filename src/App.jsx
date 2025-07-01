@@ -8,7 +8,9 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import { makeServer } from "./config/server";
-import VanDetailedPage from "./pages/VansPage/DetaliedPage/VanDetailedPage";
+import VanDetailedPage, {
+  loaderLoad as vansDetailedLoader,
+} from "./pages/VansPage/DetaliedPage/VanDetailedPage";
 import VanPhotos from "./pages/VansPage/DetaliedPage/VanPhotos";
 import VanPricing from "./pages/VansPage/DetaliedPage/VanPricing";
 import VanDetails from "./pages/VansPage/DetaliedPage/VanDetails";
@@ -17,6 +19,10 @@ import BlankPage from "./pages/BlankPage";
 import Error from "./components/ui/Error";
 import AccountPage from "./pages/Account/AccountPage";
 import HostPage from "./pages/Host/HostPage";
+import Reviews from "./pages/Host/Reviews";
+import Income from "./pages/Host/Income";
+import Dashboard from "./pages/Host/Dashboard";
+import { hostAuthRequired } from "./authentication/authLoader";
 
 makeServer();
 // import RoutePages from "./routing/RoutePages";
@@ -34,13 +40,29 @@ const router = createBrowserRouter(
         loader={vansLoader}
         errorElement={<Error />}
       />
-      <Route path="vans/:id" element={<VanDetailedPage />}>
+      {/* Vans page */}
+      <Route
+        path="vans/:id"
+        element={<VanDetailedPage />}
+        loader={vansDetailedLoader}
+      >
         <Route path="pricing" element={<VanPricing />} />
         <Route path="photos" element={<VanPhotos />} />
         <Route index element={<VanDetails />} />
       </Route>
 
-      <Route path="host" element={<HostPage />} />
+      {/* Host Vans Page */}
+      {/* have to implement the protected route here. (Pending) */}
+      <Route
+        path="host"
+        element={<HostPage />}
+        loader={hostAuthRequired}
+        errorElement={<Error />}
+      >
+        <Route path="reviews" element={<Reviews />} />
+        <Route path="income" element={<Income />} />
+        <Route index element={<Dashboard />} />
+      </Route>
 
       <Route path="*" element={<BlankPage />} />
     </Route>

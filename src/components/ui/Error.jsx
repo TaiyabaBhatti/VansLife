@@ -1,11 +1,14 @@
-import React from "react";
-import { Link, useRouteError } from "react-router-dom";
+import React, { useState } from "react";
+import {
+  Link,
+  Navigate,
+  isRouteErrorResponse,
+  useRouteError,
+} from "react-router-dom";
+isRouteErrorResponse;
 
 export default function Error() {
   const error = useRouteError();
-
-  console.log(error);
-
   return (
     <section className="flex items-center justify-center h-[calc(100vh-190px)]">
       <div className="space-y-10">

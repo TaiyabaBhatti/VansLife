@@ -7,7 +7,7 @@ export function makeServer({ environment = "development" } = {}) {
     environment,
 
     models: {
-      van: Model,
+      vans: Model,
     },
 
     seeds(server) {

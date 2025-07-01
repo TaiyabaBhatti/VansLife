@@ -1,6 +1,9 @@
-export async function getVans() {
+export async function getVans(id) {
 
-  const response = await fetch("/api/vans");
+
+  const url = id ? `/api/vans/${id}` : "/api/vans"
+
+  const response = await fetch(url);
 
   if (!response.ok) {
     console.log("Error")
@@ -11,5 +14,22 @@ export async function getVans() {
     }
   }
   const data = await response.json();
+
   return data.vans;
 }
+
+
+// export async function vanDetails() {
+
+
+//   const response = await fetch("")
+
+//   useEffect(() => {
+//     const fetchedData = Axios.get(`/api/vans/${params.id}`).then((res) => {
+//       setVanData(res.data.van);
+//     });
+//   }, []);
+
+
+
+// }
