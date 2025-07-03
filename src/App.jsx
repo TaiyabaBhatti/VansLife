@@ -1,4 +1,4 @@
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, redirect } from "react-router-dom";
 import Layout from "./routing/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -18,14 +18,12 @@ import Vans, { loaderLoad as vansLoader } from "./pages/VansPage/VansPage";
 import BlankPage from "./pages/BlankPage";
 import Error from "./components/ui/Error";
 import AccountPage from "./pages/Account/AccountPage";
-import HostPage from "./pages/Host/HostPage";
+import HostPage, { loaderLoad as hostLoader } from "./pages/Host/HostPage";
 import Reviews from "./pages/Host/Reviews";
 import Income from "./pages/Host/Income";
 import Dashboard from "./pages/Host/Dashboard";
-import { hostAuthRequired } from "./authentication/authLoader";
 
 makeServer();
-// import RoutePages from "./routing/RoutePages";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -52,12 +50,12 @@ const router = createBrowserRouter(
       </Route>
 
       {/* Host Vans Page */}
-      {/* have to implement the protected route here. (Pending) */}
+      {/* have to implement the protected route here with redirect. (Pending) */}
       <Route
         path="host"
         element={<HostPage />}
-        loader={hostAuthRequired}
-        errorElement={<Error />}
+        loader={hostLoader}
+        // errorElement={<Error />}
       >
         <Route path="reviews" element={<Reviews />} />
         <Route path="income" element={<Income />} />

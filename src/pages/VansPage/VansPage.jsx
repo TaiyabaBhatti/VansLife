@@ -6,7 +6,9 @@ import TabFilter from "./TabFilter";
 import { getVans } from "../../ApiFunc";
 
 export function loaderLoad() {
-  return getVans();
+  const vans = getVans();
+
+  return;
 }
 
 export default function Vans() {
