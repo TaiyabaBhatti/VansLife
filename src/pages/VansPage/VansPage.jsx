@@ -1,18 +1,19 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Wrapper from "../../components/ui/Wrapper";
 import VanCollection from "./VanCollection";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, Await } from "react-router-dom";
 import TabFilter from "./TabFilter";
 import { getVans } from "../../ApiFunc";
 
 export function loaderLoad() {
-  const vans = getVans();
-
-  return;
+  const vansPromise = getVans();
+  console.log(vansPromise);
+  return { vans: vansPromise };
 }
 
 export default function Vans() {
   const data = useLoaderData();
+  console.log(data);
 
   return (
     <>
@@ -34,7 +35,15 @@ export default function Vans() {
 
           {/* vans list */}
           <div className="flex flex-row flex-wrap gap-x-6 gap-y-12 justify-start">
-            <VanCollection vansData={data} />
+            <Suspense fallback={<h1>Loading Vans Data!!!!</h1>}>
+              <Await resolve={data.vans}>
+                {(vans) => {
+                  console.log(vans);
+
+                  return <VanCollection vansData={vans} />;
+                }}
+              </Await>
+            </Suspense>
           </div>
         </section>
       </Wrapper>
